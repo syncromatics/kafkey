@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package kafkey;
+
+service Kafkey {
+    rpc Watch(WatchRequest) returns(stream WatchResponse);
+}
+
+enum offset {
+    EARLIEST = 0;
+    LATEST = 1;
+}
+
+message WatchRequest {
+    string topic = 1;
+    string key = 2;
+    offset offset = 3;
+}
+
+message WatchResponse {
+    string message = 1;
+}
